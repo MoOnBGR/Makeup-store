@@ -46,9 +46,7 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
-    /**
-     * Elimina la cuenta del usuario
-     */
+   
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
