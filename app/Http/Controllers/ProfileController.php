@@ -8,37 +8,46 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Order;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
+
     public function edit(Request $request): View
     {
+        $user = $request->user();
+        
+        // Carga los pedidos del usuario con sus detalles (Módulo de Babs)
+        // Usamos eager-loading para optimizar la consulta
+        $orders = $user->orders()->with('details.product')->get();
+
         return view('profile.edit', [
-            'user' => $request->user(),
+            'user' => $user,
+            'orders' => $orders,
         ]);
     }
 
     /**
-     * Update the user's profile information.
+     * Actualiza la información personal del perfil
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
+        
+        // Asignación validada (incluyendo teléfono y dirección)
+        $user->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
         }
 
-        $request->user()->save();
+        $user->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
     /**
-     * Delete the user's account.
+     * Elimina la cuenta del usuario
      */
     public function destroy(Request $request): RedirectResponse
     {
