@@ -15,6 +15,11 @@ class CategorySeeder extends Seeder
             'Cuidado Facial',
             'Sombras & Ojos',
             'Sets de Regalo',
+
+            //Nara Apartado
+            'Cuidado Corporal',
+            'Cuidado de Uñas',
+            'Cuidado Capilar',
         ];
 
         foreach ($categories as $name) {
