@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="bg-[#faf5f0] min-h-screen text-stone-800 py-12">
         <div class="max-w-5xl mx-auto px-4">
-            <h1 class="text-3xl font-serif text-[#3b241c] mb-8">🛒 Mi Carrito</h1>
+            <h1 class="text-3xl font-serif text-[#3b241c] mb-8"> Mi Carrito</h1>
 
             @if(session('success'))
                 <div class="bg-green-100 text-green-700 p-4 rounded-lg mb-6 border border-green-200">
