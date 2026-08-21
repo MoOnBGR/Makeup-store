@@ -105,9 +105,8 @@
             </div>
         </section>
 
-        <!-- SECCIÓN DE COOKIES: Productos Vistos Recientemente -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-rose-200 mt-12">
-            <h3 class="font-serif text-2xl text-[#3b241c] mb-6">👁️ Vistos Recientemente (Cookies)</h3>
+            <h3 class="font-serif text-2xl text-[#3b241c] mb-6"> Vistos Recientemente (Cookies)</h3>
 
             @php
                 // Leemos la cookie según el estándar de tu guía

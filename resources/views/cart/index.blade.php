@@ -18,7 +18,6 @@
                 </div>
             @else
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <!-- Lista de productos -->
                     <div class="lg:col-span-2 space-y-4">
                         @foreach($cart as $id => $item)
                             <div class="bg-white p-4 rounded-xl border border-rose-100 flex items-center gap-4">
@@ -63,8 +62,6 @@
                             </form>
                         </div>
                     </div>
-
-                    <!-- Resumen -->
                     <div class="bg-white p-6 rounded-xl border border-rose-100 h-fit">
                         <h3 class="font-serif text-lg text-[#3b241c] mb-4">Resumen del pedido</h3>
 
@@ -92,7 +89,7 @@
                             </div>
                         </div>
 
-                        <a href="#" class="block w-full bg-[#3b241c] text-white text-center py-3 rounded-lg hover:bg-[#b87355] transition mt-4 text-sm font-semibold uppercase tracking-wider">
+                        <a href="{{ route('checkout') }}" class="block w-full bg-[#3b241c] text-white text-center py-3 rounded-lg hover:bg-[#b87355] transition mt-4 text-sm font-semibold uppercase tracking-wider">
                             Proceder al pago
                         </a>
                     </div>

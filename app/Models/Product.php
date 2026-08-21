@@ -21,11 +21,12 @@ class Product extends Model
         'is_featured',
     ];
 
-    /**
-     * Un producto pertenece a una categoría.
-     */
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+    public function orderDetails()
+    {
+        return $this->hasMany(OrderDetail::class);
     }
 }

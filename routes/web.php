@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,4 +30,12 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
     Route::put('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
+
+
+// Checkout
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
+Route::get('/checkout/confirmacion/{order}', [CheckoutController::class, 'confirmacion'])->name('checkout.confirmacion');
+
+
 require __DIR__.'/auth.php';
