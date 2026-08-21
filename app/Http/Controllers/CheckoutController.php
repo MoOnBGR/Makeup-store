@@ -7,7 +7,6 @@ use App\Models\OrderDetail;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use App\Http\Controllers\CheckoutController;
 
 class CheckoutController extends Controller
 {
