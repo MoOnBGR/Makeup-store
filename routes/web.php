@@ -35,8 +35,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
     Route::get('/checkout/confirmacion/{order}', [CheckoutController::class, 'confirmacion'])->name('checkout.confirmacion');
+});
 
-    // Reportes de ventas (podrías restringir esto solo a admins más adelante)
+// Reportes de ventas: solo administradores
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
     Route::get('/reports/ventas/pdf', [ReportController::class, 'ventasPdf'])->name('reports.ventas.pdf');
 });
