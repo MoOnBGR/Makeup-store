@@ -41,6 +41,12 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
     Route::get('/reports/ventas/pdf', [ReportController::class, 'ventasPdf'])->name('reports.ventas.pdf');
+
+    Route::get('/admin/usuarios', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.users.index');
+    Route::patch('/admin/usuarios/{user}/toggle-admin', [App\Http\Controllers\Admin\UserController::class, 'toggleAdmin'])->name('admin.users.toggleAdmin');
+
+    Route::get('/admin/administrativos', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('admin.admins.index');
+    Route::post('/admin/administrativos', [App\Http\Controllers\Admin\AdminController::class, 'store'])->name('admin.admins.store');
 });
 
 require __DIR__.'/auth.php';

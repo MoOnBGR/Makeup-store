@@ -33,5 +33,7 @@
             </main>
         </div>
         @include('partials.auth-panel')
+        @include('partials.register-panel')
+
     </body>
 </html>

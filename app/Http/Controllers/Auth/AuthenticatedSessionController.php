@@ -12,11 +12,7 @@ class AuthenticatedSessionController extends Controller
 {
     /**
      * Display the login view.
-     *
-     * En vez de mostrar una página de login aparte, redirigimos al dashboard
-     * y marcamos en sesión que el panel lateral debe abrirse solo.
-     * Así el fondo siempre es una página real de la tienda.
-     */
+        */
     public function create(): RedirectResponse
     {
         session()->flash('open_auth_panel', true);

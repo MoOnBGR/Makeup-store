@@ -11,16 +11,21 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
-use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
     /**
      * Display the registration view.
+     *
+     * En vez de mostrar una página de registro aparte, redirigimos al dashboard
+     * y marcamos en sesión que el panel de registro debe abrirse solo.
+     * Así el fondo siempre es una página real de la tienda.
      */
-    public function create(): View
+    public function create(): RedirectResponse
     {
-        return view('auth.register');
+        session()->flash('open_register_panel', true);
+
+        return redirect()->route('dashboard');
     }
 
     /**

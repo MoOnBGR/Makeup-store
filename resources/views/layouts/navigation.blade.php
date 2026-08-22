@@ -53,14 +53,30 @@
             <!-- Sección de Usuario / Autenticación -->
             <div class="hidden sm:flex sm:items-center gap-2">
                 @auth
-                    {{-- Usuario logueado: solo ícono (va a su perfil) + botón cerrar sesión --}}
-                    <a href="{{ route('profile.edit') }}"
-                       class="p-2 text-[#3b241c] hover:text-[#b87355] transition"
-                       title="Mi cuenta">
-                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2.4c-3.3 0-9.8 1.6-9.8 4.9v2.5h19.6v-2.5c0-3.3-6.5-4.9-9.8-4.9z"/>
-                        </svg>
-                    </a>
+                    <x-dropdown align="right" width="48">
+                        <x-slot name="trigger">
+                            <button class="p-2 text-[#3b241c] hover:text-[#b87355] transition" title="Mi cuenta">
+                                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2.4c-3.3 0-9.8 1.6-9.8 4.9v2.5h19.6v-2.5c0-3.3-6.5-4.9-9.8-4.9z"/>
+                                </svg>
+                            </button>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <x-dropdown-link :href="route('profile.edit')">
+                                Personal
+                            </x-dropdown-link>
+
+                            @if(auth()->user()->is_admin)
+                                <x-dropdown-link :href="route('reports.index')">
+                                    Pedidos
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('admin.admins.index')">
+                                    Administrativos
+                                </x-dropdown-link>
+                            @endif
+                        </x-slot>
+                    </x-dropdown>
 
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
@@ -122,6 +138,15 @@
                     <x-responsive-nav-link :href="route('profile.edit')">
                         {{ __('Mi Cuenta') }}
                     </x-responsive-nav-link>
+
+                    @if(auth()->user()->is_admin)
+                        <x-responsive-nav-link :href="route('reports.index')">
+                            {{ __('Pedidos') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="route('admin.admins.index')">
+                            {{ __('Administrativos') }}
+                        </x-responsive-nav-link>
+                    @endif
 
                     <!-- Authentication -->
                     <form method="POST" action="{{ route('logout') }}">
